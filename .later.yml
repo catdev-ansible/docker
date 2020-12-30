@@ -1,0 +1,12 @@
+---
+rules:
+  exclude_files:
+    - molecule/
+    - _docs/
+    - "LICENSE*"
+    - "**/*.md"
+    - "**/*.ini"
+
+yamllint:
+  document-end:
+    present: False

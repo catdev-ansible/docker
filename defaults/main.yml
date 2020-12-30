@@ -1,0 +1,41 @@
+---
+# @var docker_version_pinning:description: Pin docker packages to a specific version.
+# @var docker_version_pinning: $ "_unset_"
+# @var docker_version_pinning:example: $ "5:19.03.*"
+
+# @var docker_registries:description: List of docker registries to auto login
+# @var docker_registries:example: >
+# docker_registries:
+#   - registry: myregistry.example.com
+#     username: docker
+#     password: secure
+#     reauthorize: False
+#     state: present
+# @end
+docker_registries: []
+
+# @var docker_daemon_config:description: Add config options to daemon.json
+docker_daemon_config:
+  log-driver: json-file
+  log-opts:
+    max-size: 5m
+    max-file: "3"
+  live-restore: True
+
+# @var docker_networks:description: List of additional docker networks to create
+# @var docker_networks:example: >
+# docker_networks:
+#   - name: traefik
+#     driver: bridge
+#     enable_ipv6: True
+#     ipam_config:
+#       - subnet: fdd1:ac8c:0557:7ce1::/64
+#     force: False
+#     state: present
+# @end
+docker_networks: []
+# @var docker_networks:description: List of extra docker networks to create. For configuration detials see `docker_networks`
+docker_networks_extra: []
+
+# @var docker_arch:description: Target system architecture used to select correct deb repository
+docker_arch: amd64

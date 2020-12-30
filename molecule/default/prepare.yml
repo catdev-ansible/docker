@@ -1,0 +1,22 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Bootstrap python for Ansible
+      raw: |
+        command -v python3 python || (
+        (test -e /usr/bin/dnf && sudo dnf install -y python3) ||
+        (test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal)) ||
+        (test -e /usr/bin/yum && sudo yum -y -qq install python3) ||
+        echo "Warning: Python not boostrapped due to unknown platform."
+        )
+      changed_when: false
+
+    - name: Wait for apt lock
+      shell: while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do echo 'Waiting for apt list lock.' && sleep 10; done
+      changed_when: false
+
+    - name: Update package cache
+      apt:
+        update_cache: true

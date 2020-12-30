@@ -1,0 +1,54 @@
+---
+kind: pipeline
+name: linting
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: later
+  image: thegeeklab/ansible-later
+  commands:
+  - ansible-later
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/tags/**
+  - refs/pull/**
+
+---
+kind: pipeline
+name: deployment
+
+platform:
+  os: linux
+  arch: amd64
+
+concurrency:
+  limit: 1
+
+workspace:
+  base: /drone/src
+  path: ${DRONE_REPO_NAME}
+
+steps:
+- name: molecule
+  image: thegeeklab/molecule:3
+  commands:
+  - molecule test -s default
+  environment:
+    HCLOUD_TOKEN:
+      from_secret: molecule_hcloud_token
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/tags/**
+  - refs/pull/**
+
+depends_on:
+- linting
+
+...

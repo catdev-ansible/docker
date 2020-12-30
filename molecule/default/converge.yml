@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    docker_networks:
+      - name: demo
+        driver: bridge
+    docker_version_pinning: 5:19.03.*
+
+  roles:
+    - role: docker
