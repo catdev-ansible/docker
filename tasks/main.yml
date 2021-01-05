@@ -40,6 +40,7 @@
   loop:
     - docker-ce
     - python3-docker
+    - docker-compose
   package:
     name: "{{ item }}"
     update_cache: yes
