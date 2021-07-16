@@ -22,6 +22,8 @@ docker_daemon_config:
     max-file: "3"
   live-restore: True
 
+docker_daemon_config_extra: {}
+
 # @var docker_networks:description: List of additional docker networks to create
 # @var docker_networks:example: >
 # docker_networks:
@@ -39,3 +41,5 @@ docker_networks_extra: []
 
 # @var docker_arch:description: Target system architecture used to select correct deb repository
 docker_arch: amd64
+
+docker_custom_volumes_base_dir: /var/lib/docker/custom_volumes

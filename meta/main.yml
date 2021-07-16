@@ -1,10 +1,10 @@
-# Standards: 0.1
+# Standards: 0.2
 ---
 galaxy_info:
   author: "catdev admin <sysadmin@catdev.io>"
   description: Setup Docker CE
   license: MIT
-  min_ansible_version: 2.8
+  min_ansible_version: 2.10
   platforms:
     - name: Ubuntu
       versions:
@@ -12,4 +12,4 @@ galaxy_info:
   galaxy_tags:
     - webserver
     - docker
-dependencies:
+dependencies: []
