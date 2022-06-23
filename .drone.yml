@@ -35,7 +35,7 @@ workspace:
 
 steps:
 - name: molecule
-  image: thegeeklab/molecule:3
+  image: thegeeklab/molecule:4
   commands:
   - molecule test -s default
   environment:
